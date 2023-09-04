@@ -1,9 +1,8 @@
 # letter counter given an input word with some more stuff
-
+counter = 0
 while True:
     word = input("Enter a world: ")
-    counter = 0 
-
+    
     if word == "done":
         print("you are done!")
         break
