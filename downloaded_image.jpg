@@ -1,0 +1,8 @@
+HTTP/1.1 301 Moved Permanently
+content-length: 0
+location: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Yevgeny_Prigozhin_%2813-06-2023%29.jpg
+server: HAProxy
+x-cache: cp6002 int
+x-cache-status: int-tls
+connection: close
+
