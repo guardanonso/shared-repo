@@ -1,26 +1,4 @@
-import socket
-import time
-HOST = 'www.aranzulla.it'
-PORT = 80
-mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mysock.connect((HOST, PORT))
-mysock.sendall(b'GET https://www.aranzulla.it/wp-content/contenuti/2016/08/ad5972a7.jpg HTTP/1.0\r\n\r\n')
-count = 0
-picture = b""
-while True:
-    data = mysock.recv(5120)
-    if len(data) < 1: break
-#time.sleep(0.25)
-    count = count + len(data)
-    print(len(data), count)
-    picture = picture + data
-mysock.close()
-# Look for the end of the header (2 CRLF)
-pos = picture.find(b"\r\n\r\n")
-print('Header length', pos)
-print(picture[:pos].decode())
-# Skip past the header and save the picture data
-picture = picture[pos+4:]
-fhand = open("stuff.jpg", "wb")
-fhand.write(picture)
-fhand.close()
+import requests
+
+url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Yevgeny_Prigozhin_%2813-06-2023%29.jpg/329px-Yevgeny_Prigozhin_%2813-06-2023%29.jpg"
+response = requests.get(url)
