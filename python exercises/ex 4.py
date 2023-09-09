@@ -13,7 +13,7 @@ while True:
         continue
     length = len(inpword)
     if inpchars >= length:
-        print("Choose a number of characters that's lower than the length of thw word you chose")
+        print("Choose a number of characters that's lower than the length of the that word you cho0se")
         continue
     else:   
         print(remove_chars(inpword,inpchars))
