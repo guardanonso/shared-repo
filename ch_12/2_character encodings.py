@@ -17,7 +17,9 @@ gcharset = gresponse.headers.get_content_charset()
 print(gcharset)
 gdecoded_body = gbody.decode(gcharset)
 
-with open("file2.html", encoding = "utf-8", mode = "w") as gfile:
+with open("file2.html", encoding = "iso-8859-1", mode = "w") as gfile:
     gfile.write(gdecoded_body)
+
+
 
 
