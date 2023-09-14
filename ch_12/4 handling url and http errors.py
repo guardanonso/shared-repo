@@ -16,9 +16,9 @@ def make_request(url, headers=None):
     except TimeoutError:
         print("Request timed out")
 
-body, response = make_request("https://superfish.badssl.com/",
+make_request("https://superfish.badssl.com/",
                                {"User-Agent": "Real Python"})
         
-print(response.getheaders())
+
 
 
