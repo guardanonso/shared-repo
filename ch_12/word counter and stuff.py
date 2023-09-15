@@ -12,12 +12,14 @@ for line in lines:
     for word in words:
         word_counter[word] = word_counter.get(word,0) + 1
 
-lst = list()
-for k,v in word_counter.items():
-    tup = (v,k)
-    lst.append(tup)
+list = sorted([(v,k) for (k,v) in word_counter.items()], reverse = True)
+final_list = ([(k,v) for v,k in list])
 
-print(sorted(lst))
+print(final_list[0:10])
+
+
+
+    
 
 
 
