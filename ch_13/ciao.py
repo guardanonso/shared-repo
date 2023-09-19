@@ -1,21 +1,37 @@
 from urllib import request, parse, error
 import json
 
-serviceurl = "http://api.weatherapi.com/v1/current.json"
+inp = input("Choose between these options:\n1. Current weather in a given location \n2. Forecast weather\n3. History weather(previous 7 days in a given location)")
+current_serviceurl = "http://api.weatherapi.com/v1/current.json"
+history_url = "http://api.weatherapi.com/v1/hisotry.json"
+future_url = "http://api.weatherapi.com/v1/future.json"
+
+url_dic = {"1" : current_serviceurl,"2" : history_url, "3" : future_url}
 
 api_key = "70054fa919c448b7992132453231809"
+location = input("Enter a location: ")
 
-query_params = parse.urlencode({"key":api_key,"q":"Ferrandina"})
 
-print(query_params)
+def current_weather_data(api_url):
 
-url = f"{serviceurl}?{query_params}"
-print(url)
+    query_params = parse.urlencode({"key":api_key,"q" : location})
+    print(query_params)
 
-uh = request.urlopen(url)
+    url = f"{api_url}?{query_params}"
 
-data = uh.read().decode()
+    try:
+        with request.urlopen(url) as uh:
+            data = uh.read().decode()
+            dic = json.loads(data)
+        print(json.dumps(dic, indent=4))
 
-js = json.loads(data)
-print(js)
+    except error.HTTPError as error:
+        print(error)
+    except error.URLError as error:
+        print(error)
+
+
+
+
+
 
