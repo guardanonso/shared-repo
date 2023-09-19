@@ -35,7 +35,8 @@ def history_weather_data(api_url):
             with request.urlopen(url,timeout=10) as uh:
                 data = uh.read().decode()
                 dic = json.loads(data)
-                print(dic["forecast"]["forecastday"][0]["day"]["avgtemp_c"])
+                avgtemp_c = dic["forecast"]["forecastday"][0]["day"]["avgtemp_c"]
+                print(avgtemp_c, type(avgtemp_c))
 
         except error.HTTPError as error:
             print(error)
