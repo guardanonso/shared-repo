@@ -3,10 +3,7 @@ import json
 from datetime import date, datetime
 from datetime import timedelta
 
-tod = date.today()
-date_format = "%Y-%m-%d"
-dtObj = datetime.strptime(str(tod), date_format)
-past_date = dtObj - timedelta(days=10)
+
 
 print(past_date.date())
 
