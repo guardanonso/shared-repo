@@ -9,7 +9,7 @@ location = input("Enter a location: ")
 
 while True:
     days = input("How many days behind?: ")
-    if days.isdigit() and float(str(days)).is_integer() and int(days)<= 365:
+    if days.isdigit() and float(str(days)).is_integer() and 1 < int(days) <= 365:
         break
     else:   continue
 
@@ -33,16 +33,19 @@ def history_weather_data(api_url):
                 data = uh.read().decode()
                 dic = json.loads(data)
                 avgtemp_c = dic["forecast"]["forecastday"][0]["day"]["avgtemp_c"]
+                city_name = dic["location"]["name"]
                 temp_lst.append(avgtemp_c)
                 print(d, avgtemp_c, "°C")
-        
-        except error.HTTPError as error:
-            print(error)
-        except error.URLError as error:
-            print(error)
-        except TimeoutError as error:
-            print(error)
-    avarage_temp = sum(temp_lst)/len(temp_lst)
-    print(f"The avarage temperature in {location} in the past {days} days was: {round(avarage_temp,1)}")
-
+                
+        except error.HTTPError as err:
+            print(err)
+            quit()
+        except error.URLError as err:
+            print(err)
+            quit()
+        except TimeoutError as err:
+            print(err)
+            quit()
+    print(f"The avarage temperature in the city of {city_name} was {round((sum(temp_lst)/len(temp_lst)), 1)} °C")
+    
 history_weather_data(history_url)
