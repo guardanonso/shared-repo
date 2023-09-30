@@ -7,18 +7,23 @@ history_url = "http://api.weatherapi.com/v1/history.json"
 api_key = "70054fa919c448b7992132453231809"
 
 print("Choose the information you want to retrieve (you can pick more than one) by typing the associated value of the data you are interested in:\n(1) max temperature\n(2) min temperature\n(3) avg temperature\n(4) humidity")
-while True:
-    try: 
-        requested_data = int(input())
-    except:
-        print("Please enter a digit")
-        continue
-    if requested_data <= 3:
-        break
-    else:
-        print("Please enter a digit <= 3")   
-        continue
+requested_stuff = list()
 
+while True:
+    requested_data = input("Please enter a digit: ")
+    if requested_data.lower() == "done":
+        break
+    try:
+        i_data = int(requested_data)
+    except:
+        print("Enter a digit")
+        continue
+    if i_data <= 3:
+        if i_data not in requested_stuff:
+            requested_stuff.append(i_data)
+    else:   continue
+
+print(requested_stuff)
 
 location = input("Enter a location: ")
 dicc = {1 : "maxtemp_c", 2 : "mintemp_c", 3 : "avgtemp_c"} 
@@ -41,7 +46,7 @@ for n in range(1,int(days)+1):
 def history_weather_data(api_url):
     temp_lst = list()
     for d in dates_lst:
-        query_params = parse.urlencode({"key":api_key,"q":location, "dt" : d})
+        query_params = parse.urlencode({"key":api_key,"q":location, "dt" : d, "hour" : "23"})
         url = f"{api_url}?{query_params}"
 
         try:
