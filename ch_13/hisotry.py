@@ -46,15 +46,16 @@ for n in range(1,int(days)+1):
 def history_weather_data(api_url):
     temp_lst = list()
     for d in dates_lst:
-        query_params = parse.urlencode({"key":api_key,"q":location, "dt" : d, "hour" : "23"})
+        query_params = parse.urlencode({"key" : api_key, "q" : location, "dt" : d, "hour" : "23"})
         url = f"{api_url}?{query_params}"
 
         try:
             with request.urlopen(url, timeout = 10) as uh:
-                data = uh.read().decode()
-                dic = json.loads(data)
-                avgtemp_c = dic["forecast"]["forecastday"][0]["day"]["avgtemp_c"]
+                dic = json.loads(uh.read().decode())
                 city_name = dic["location"]["name"]
+
+                avgtemp_c = dic["forecast"]["forecastday"][0]["day"]["avgtemp_c"]
+                maxtemp_c = dic["forecast"]["forecastday"][0]["day"]
                 temp_lst.append(avgtemp_c)
                 print(d, avgtemp_c, "°C")
                 
