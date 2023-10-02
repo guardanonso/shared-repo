@@ -55,9 +55,10 @@ def history_weather_data(api_url):
                 city_name = dic["location"]["name"]
 
                 avgtemp_c = dic["forecast"]["forecastday"][0]["day"]["avgtemp_c"]
-                maxtemp_c = dic["forecast"]["forecastday"][0]["day"]
+                maxtemp_c = dic["forecast"]["forecastday"][0]["day"]["maxtemp_c"]
+                mintemp_c = dic["forecast"]["forecastday"][0]["day"]["mintemp_c"]
                 temp_lst.append(avgtemp_c)
-                print(d, avgtemp_c, "°C")
+                print(d, avgtemp_c, maxtemp_c, "°C")
                 
         except error.HTTPError as err:
             print(err)
