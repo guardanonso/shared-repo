@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 
 dates_lst = list()
 
-days = "3"
+days = "1"
 for n in range(1,int(days)+1):
     tod = date.today()
     date_format = "%Y-%m-%d"
@@ -26,17 +26,19 @@ def weather_api(city):
                 chance_of_rain = dic["forecast"]["forecastday"][0]["hour"][0]["chance_of_rain"]
                 humidity = dic["forecast"]["forecastday"][0]["hour"][0]["humidity"]
                 a = dic["forecast"]["forecastday"][0]["day"]["avghumidity"]
+                avgtemp_c = dic["forecast"]["forecastday"][0]["day"]["avgtemp_c"]
                 humidity_list = list()
                 chance_list = list()
                 chance_list.append(chance_of_rain)
                 humidity_list.append(humidity)
                 avg_chance_of_rain = sum(chance_list)/len(chance_list)
                 avg_humidity = sum(humidity_list)/len(humidity_list)
-        print(avg_chance_of_rain, avg_humidity, a)
-    return(dic)
+        
+        print(avg_humidity,avgtemp_c)
+    
 
 a = "rome"
-print(weather_api(a))
+weather_api(a)
 
 
 
