@@ -58,7 +58,7 @@ def history_weather_data(api_url):
                 maxtemp_c = dic["forecast"]["forecastday"][0]["day"]["maxtemp_c"]
                 mintemp_c = dic["forecast"]["forecastday"][0]["day"]["mintemp_c"]
                 temp_lst.append(avgtemp_c)
-                print(d, avgtemp_c, maxtemp_c, "°C")
+                print(d, avgtemp_c, maxtemp_c, mintemp_c, "°C")
                 
         except error.HTTPError as err:
             print(err)
@@ -70,6 +70,5 @@ def history_weather_data(api_url):
             print(err)
             quit()
     print(f"The avarage temperature in the city of {city_name} was {round((sum(temp_lst)/len(temp_lst)), 1)} °C in the past {days} days")
-    print(json.dumps(dic, indent = 4))
     
 history_weather_data(history_url)

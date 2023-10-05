@@ -4,7 +4,8 @@ from datetime import date, datetime, timedelta
 
 dates_lst = list()
 
-days = "1"
+days = input()
+location = input()
 for n in range(1,int(days)+1):
     tod = date.today()
     date_format = "%Y-%m-%d"
@@ -38,7 +39,7 @@ def weather_api(city):
     
 
 a = "rome"
-weather_api(a)
+weather_api(location)
 
 
 
