@@ -68,15 +68,15 @@ elif inp == "1":
                 data = uh.read().decode()
                 dic = json.loads(data)
                 humidity = dic["current"]["humidity"]
-                print(json.dumps(dic, indent=4))
-
+                temp = dic["current"]["feelslike_c"]
+ 
         except HTTPError as err:
             print(err)
             quit()
         except URLError as err:
             print(err)
             quit()
-        print(humidity)
+        print(humidity, temp)
     current_weather_data(location)
 
 
