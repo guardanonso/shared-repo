@@ -1,16 +1,31 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = f"https://www.basketball-reference.com/teams/BOS/2024.html"
+url = "https://www.basketball-reference.com/teams/BOS/2024.html"
+
 doc = requests.get(url)
+soup = BeautifulSoup(doc.text, "html.parser")
 
-with open("doc.html", "w", encoding = "utf-8") as f:
-    f.write(doc.text)
+# print(soup.prettify)
 
-with open("doc.html", "r", encoding = "utf-8") as f:
-    soup = BeautifulSoup(f,"html.parser")
+body  = soup.find("table", attrs = {"id" : "per_game"}).tbody
+result = []
 
-tag = soup.find_all(name = "table", attrs = {"id" : "per_game"})
+rows = body.find_all(name = "tr")
+dic  =  dict()
 
-for a in tag:
-    print(a.text)
+for row in rows:
+    lst = list()
+    stats = row.find_all("td")
+    for stat in stats:
+        if  stat is stats[0]:
+            name = stat.text
+        else:
+            stat = stat.text
+            lst.append(stat)
+    dic.update({name : lst})
+
+print(dic)
+            
+
+
