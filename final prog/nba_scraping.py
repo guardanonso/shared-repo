@@ -3,25 +3,15 @@ import requests
 import pandas as pd
 from functools import reduce 
 
-franchises_url = "https://en.wikipedia.org/wiki/Wikipedia:WikiProject_National_Basketball_Association/National_Basketball_Association_team_abbreviations"
-document = requests.get(franchises_url)
-franchise_soup = BeautifulSoup(document.text, "html.parser")
-body = franchise_soup.find("tbody").find_all("tr")
-print(body)
-for n in body:
-    penis = n.find_all()
-
 Data_Frames = []
 teams = ["BOS","PHI","LAL","SAS"]
 for team in teams:
-    url = "https://www.basketball-reference.com/teams/"+team+"/1984.html"
+    url = "https://www.basketball-reference.com/teams/"+team+"/2024.html"
     print(url)
     doc = requests.get(url)
     soup = BeautifulSoup(doc.text, "html.parser")
 
-    # print(soup.prettify)
-
-    body  = soup.find("table", attrs = {"id" : "per_game"}).tbody
+    body  = soup.find(name = "table", attrs = {"id" : "per_game"}).tbody
     rows = body.find_all(name = "tr")
 
     dic  =  list()
@@ -69,6 +59,6 @@ for team in teams:
 
 merged_df = pd.concat(Data_Frames)
 
-file_path = ("C:\\Users\\RYZEN-GTX-1060\\Desktop\\test_repo\project\\final prog\\ciau.csv")
+file_path = (".\\ciau.csv")
 merged_df.to_csv(file_path)
 
