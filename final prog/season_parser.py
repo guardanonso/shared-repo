@@ -1,36 +1,21 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
-import time
-import regex
+from selenium import webdriver
 
-url = "https://www.basketball-reference.com/leagues/NBA_2023_per_game.html"
+url = "https://www.basketball-reference.com/leagues/NBA_2024_per_game.html"
 
 response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser")
 
 rows = soup.find("tbody").find_all(name = "tr", class_ = "full_table")
-href_lst = []
 lst_of_totals = []
 for row in rows:
     lst = []
     stats = row.find_all("td")
-    links = row.find_all("a")
-    for link in links:
-        href = link.get("href")
-        if "players" in href:
-            href_lst.append(href)
     for stat in stats:
         lst.append(stat.text)
     lst_of_totals.append(lst)
-
-time.sleep(4)
-
-url = f"https://www.basketball-reference.com/players/l/lowryky01.html"
-response = requests.get(url)
-soup = BeautifulSoup(response.text,"html.parser")
-idk = soup.find(name="div",id="meta").find_all("p")
-print(idk[3].text)
 
 data_frame = {
             "Player":[n[0]for n in lst_of_totals],"Pos": [n[1]for n in lst_of_totals],"Age":[n[2]for n in lst_of_totals],"Tm":[n[3]for n in lst_of_totals],
@@ -44,8 +29,10 @@ data_frame = {
             }
 
 players_names = [n[0] for n in lst_of_totals]
+df = pd.DataFrame(data_frame).sort_values(by=['Player']).reset_index()
+df.to_csv(".\\final prog\\season_table.csv")
 
-df = pd.DataFrame(data_frame)
-print(href_lst[299])
+driver = webdriver.Chrome()
+driver.get("https://www.nba.com/stats/players/bio")
+title = driver.title
 
-# df.to_csv(".\\final prog\\season_table.csv")
