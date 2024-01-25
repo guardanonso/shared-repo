@@ -50,5 +50,7 @@ print(html)
 a = requests.get("https://www.nba.com/stats/players/bio")
 soup = BeautifulSoup(a.text, "html.parser")
 
+with open('dog_breeds.html', 'w') as f:
+    f.write(soup.text)
 a = soup.find("tbody")
 print(a)
