@@ -2,6 +2,11 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+from selenium.webdriver import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 url = "https://www.basketball-reference.com/leagues/NBA_2024_per_game.html"
 
@@ -34,5 +39,16 @@ df.to_csv(".\\final prog\\season_table.csv")
 
 driver = webdriver.Chrome()
 driver.get("https://www.nba.com/stats/players/bio")
-title = driver.title
+driver.implicitly_wait(10)
+driver.find_element(By.XPATH, "//option[@value='-1']").click()
+time.sleep(10)
+html = driver.page_source
+driver.quit()
 
+print(html)
+
+a = requests.get("https://www.nba.com/stats/players/bio")
+soup = BeautifulSoup(a.text, "html.parser")
+
+a = soup.find("tbody")
+print(a)
