@@ -38,19 +38,12 @@ df = pd.DataFrame(data_frame).sort_values(by=['Player']).reset_index()
 df.to_csv(".\\final prog\\season_table.csv")
 
 driver = webdriver.Chrome()
-driver.get("https://www.nba.com/stats/players/bio")
+driver.get("https://basketball.realgm.com/nba/players")
 driver.implicitly_wait(10)
-driver.find_element(By.XPATH, "//option[@value='-1']").click()
-time.sleep(10)
+# driver.find_element(By.XPATH, "//select[@onchange='open_network(this.options[this.selectedIndex].value)']").click()
+time.sleep(60)
 html = driver.page_source
 driver.quit()
 
 print(html)
 
-a = requests.get("https://www.nba.com/stats/players/bio")
-soup = BeautifulSoup(a.text, "html.parser")
-
-with open('dog_breeds.html', 'w') as f:
-    f.write(soup.text)
-a = soup.find("tbody")
-print(a)
