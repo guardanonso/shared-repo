@@ -4,11 +4,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-url = "https://www.basketball-reference.com/leagues/NBA_2024_per_game.html"
+URL = "https://www.basketball-reference.com/leagues/NBA_2024_per_game.html"
 
 response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser")
@@ -37,13 +34,4 @@ players_names = [n[0] for n in lst_of_totals]
 df = pd.DataFrame(data_frame).sort_values(by=['Player']).reset_index()
 df.to_csv(".\\final prog\\season_table.csv")
 
-driver = webdriver.Chrome()
-driver.get("https://basketball.realgm.com/nba/players")
-driver.implicitly_wait(10)
-# driver.find_element(By.XPATH, "//select[@onchange='open_network(this.options[this.selectedIndex].value)']").click()
-time.sleep(60)
-html = driver.page_source
-driver.quit()
-
-print(html)
 
