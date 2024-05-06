@@ -105,8 +105,8 @@ print(len(names))
 
 print(len(totals), len(lst_of_totals), len(names))
 print("nigger")
-# for n in lst_of_totals:
-#     print(len(n))
+## for n in lst_of_totals:
+##    print(len(n))
 print(totals[0], lst_of_totals[0])
 
 data_frame = {
