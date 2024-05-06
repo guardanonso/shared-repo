@@ -1,1 +1,1 @@
-b.click()
+(stat)

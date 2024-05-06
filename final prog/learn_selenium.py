@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 year = int(input())
 
@@ -32,8 +33,12 @@ player_names = [element.text for element in player_name_elements]
 for name in player_names:
     print(name)
 
+data_frame = {"Player":[element.text for element in player_name_elements]}
+df = pd.DataFrame(data_frame)
+print(df)
+
 driver.quit()
-time.sleep(10000)
-html = driver.page_source
+
+
 
 
