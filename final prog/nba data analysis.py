@@ -5,8 +5,8 @@ import time
 import regex as re
 from unidecode import unidecode
 
-MAIN_URL = "https://www.basketball-reference.com/leagues/NBA_2024_per_game.html"
-SECOND_URL = "https://basketball.realgm.com/nba/players/2024"
+MAIN_URL = "https://www.basketball-reference.com/leagues/NBA_1962_per_game.html"
+SECOND_URL = "https://basketball.realgm.com/nba/players/1962"
 
 # parsing main url 
 response = requests.get(MAIN_URL)
