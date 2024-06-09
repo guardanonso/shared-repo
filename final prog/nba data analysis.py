@@ -5,8 +5,13 @@ import time
 import regex as re
 from unidecode import unidecode
 
+<<<<<<< HEAD
 MAIN_URL = "https://www.basketball-reference.com/leagues/NBA_1962_per_game.html"
 SECOND_URL = "https://basketball.realgm.com/nba/players/1962"
+=======
+MAIN_URL = "https://www.basketball-reference.com/leagues/NBA_1965_per_game.html"
+SECOND_URL = "https://basketball.realgm.com/nba/players/1965"
+>>>>>>> 57fd800bcbf6090c892291599b38d4b3a96ae0ef
 
 # parsing main url 
 response = requests.get(MAIN_URL)
@@ -37,6 +42,10 @@ for row in rows:
             lst.append(stat.text)
         lst.append(stat.text)
     totals.append(lst)
+
+if "2024" in MAIN_URL and SECOND_URL:
+    for n in totals:
+        n.remove(n[0])
 
 # find index of height data
 for n in totals[0]:
@@ -82,12 +91,7 @@ for n in lst_of_totals:
         if n[2]==h[4] and n[3]==h[5] and n[4]==h[6] and unidecode(n[0]) != unidecode(h[0]):
             h.remove(h[0])
             h.insert(0,n[0])
-
-print(len(totals),[unidecode(h[0])for h in totals])
-for n in totals:
-    print(n[0])
-
-
+none_counter = 0
 names = []
 for n in lst_of_totals: 
     if unidecode(n[0]) in [unidecode(h[0])for h in totals]:
@@ -100,13 +104,8 @@ for n in lst_of_totals:
         n.insert(4,"None")
         n.insert(5,"None")
         names.append(n[0])
-print(len(names))
+        none_counter +=1
 
-
-print(len(totals), len(lst_of_totals), len(names))
-print("nigger")
-##git  for n in lst_of_totals:
-##    print(len(n))
 print(totals[0], lst_of_totals[0])
 
 data_frame = {
@@ -123,4 +122,5 @@ data_frame = {
 df = pd.DataFrame(data_frame).sort_values(by=['Player']).reset_index()
 df.to_csv(".\\final prog\\season_table.csv")
 
+print(none_counter)
 
