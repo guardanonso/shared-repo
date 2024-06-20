@@ -3,6 +3,8 @@
 using namespace std;
 
 int main(void){
-    int a,b,c;
-    cin >>a>>b>>c;
+    int val = 5;
+    int *p = &val;
+
+    printf("%d", *p);
 }
