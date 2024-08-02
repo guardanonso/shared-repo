@@ -5,13 +5,11 @@ import time
 import regex as re
 from unidecode import unidecode
 
-<<<<<<< HEAD
-MAIN_URL = "https://www.basketball-reference.com/leagues/NBA_1962_per_game.html"
-SECOND_URL = "https://basketball.realgm.com/nba/players/1962"
-=======
-MAIN_URL = "https://www.basketball-reference.com/leagues/NBA_1965_per_game.html"
-SECOND_URL = "https://basketball.realgm.com/nba/players/1965"
->>>>>>> 57fd800bcbf6090c892291599b38d4b3a96ae0ef
+
+MAIN_URL = "https://www.basketball-reference.com/leagues/NBA_1967_per_game.html"
+SECOND_URL = "https://basketball.realgm.com/nba/players/1967"
+
+
 
 # parsing main url 
 response = requests.get(MAIN_URL)
@@ -120,7 +118,7 @@ data_frame = {
             }
 
 df = pd.DataFrame(data_frame).sort_values(by=['Player']).reset_index()
-df.to_csv(".\\final prog\\season_table.csv")
+df.to_csv(".\\season_table.csv")
 
 print(none_counter)
 
