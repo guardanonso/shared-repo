@@ -35,7 +35,7 @@ int main(void){
             printf("Credit limit: %f\n", credit_limit);
             printf("Balance: %f\n", balance);
 
-            puts("Credit Limit Exceeded."); //ciao 
+            puts("Credit Limit Exceeded."); 
         }
         printf("ciaooo");
     }

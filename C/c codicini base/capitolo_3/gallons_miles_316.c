@@ -12,7 +12,7 @@ int main(void){
         if(gallons == -1){
 
             if (gallons_sum > 0){
-                printf("The overall average miles/gallon was: %.2f", miles_sum/gallons_sum);   
+                printf("The overall average miles/gallons was: %.2f", miles_sum/gallons_sum);   
                 }
               
             else{
