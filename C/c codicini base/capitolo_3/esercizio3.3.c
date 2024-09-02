@@ -11,7 +11,7 @@ int main(void){
         puts("Count is greater than 10.");
     }
     // d
-    float q = 10.0, divisore = 4.0;
+    int q = 10.0, divisore = 4.0;
     q %= divisore;
     printf("%d", q);
 }
